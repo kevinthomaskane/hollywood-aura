@@ -3,11 +3,574 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Title</title>
+    <title>Hollywood Aura Photography - Experience Your Aura Like Never Before</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .rainbow-gradient {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FECA57, #FF9FF3, #54A0FF);
+            background-size: 300% 300%;
+            animation: rainbow 8s ease infinite;
+        }
+        
+        .rainbow-gradient-border {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FECA57, #FF9FF3, #54A0FF);
+            background-size: 300% 300%;
+            animation: rainbow 8s ease infinite;
+            padding: 2px;
+            border-radius: 1rem;
+        }
+        
+        .rainbow-text {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FECA57, #FF9FF3, #54A0FF);
+            background-size: 300% 300%;
+            animation: rainbow 8s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .aura-glow {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+        
+        .hero-rainbow-bg {
+            background: linear-gradient(-45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FECA57, #FF9FF3, #54A0FF, #8B5CF6, #EC4899);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .hero-rainbow-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(69, 183, 209, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 70%, rgba(150, 206, 180, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 30%, rgba(254, 202, 87, 0.3) 0%, transparent 50%);
+            animation: floatingOrbs 20s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes floatingOrbs {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.7;
+            }
+            25% { 
+                transform: translate(-20px, -20px) rotate(90deg);
+                opacity: 0.5;
+            }
+            50% { 
+                transform: translate(20px, -10px) rotate(180deg);
+                opacity: 0.8;
+            }
+            75% { 
+                transform: translate(-10px, 20px) rotate(270deg);
+                opacity: 0.6;
+            }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Header Styles */
+        .header-bg {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #8B5CF6;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
 </head>
-<body>
-    <!-- Your content goes here -->
-    <h1>Hello, World!</h1>
-    <p>This is a basic HTML page.</p>
+<body class="font-inter bg-gray-50">
+    
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 header-bg">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="public/Hollywood-Aura-Photography-Logo-1400x654.png" 
+                         alt="Hollywood Aura Photography" 
+                         class="h-12 w-auto">
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 font-medium">Home</a>
+                    <div class="relative group">
+                        <a href="#appointments" class="nav-link text-gray-700 font-medium flex items-center">
+                            Appointments
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="p-4">
+                                <a href="#aura-chakra" class="block py-2 text-gray-700 hover:text-purple-600">Aura & Chakra Studio</a>
+                                <a href="#aura-photo" class="block py-2 text-gray-700 hover:text-purple-600">Aura Photography</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="#event-services" class="nav-link text-gray-700 font-medium flex items-center">
+                            Event Services
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="p-4">
+                                <a href="#aura-booth" class="block py-2 text-gray-700 hover:text-purple-600">Aura Photo Booth</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#shop" class="nav-link text-gray-700 font-medium">Shop</a>
+                    <a href="#gift-cards" class="nav-link text-gray-700 font-medium">Gift Cards</a>
+                    <a href="#contact" class="nav-link text-gray-700 font-medium">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden p-2" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="lg:hidden mobile-menu fixed top-0 left-0 w-full h-full bg-white z-50" id="mobile-menu">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-8">
+                    <img src="public/Hollywood-Aura-Photography-Logo-1400x654.png" 
+                         alt="Hollywood Aura Photography" 
+                         class="h-10 w-auto">
+                    <button class="p-2" id="mobile-menu-close">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="space-y-6">
+                    <a href="#home" class="block text-xl text-gray-700 font-medium">Home</a>
+                    <div>
+                        <a href="#appointments" class="block text-xl text-gray-700 font-medium mb-2">Appointments</a>
+                        <div class="ml-4 space-y-2">
+                            <a href="#aura-chakra" class="block text-gray-600">Aura & Chakra Studio</a>
+                            <a href="#aura-photo" class="block text-gray-600">Aura Photography</a>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#event-services" class="block text-xl text-gray-700 font-medium mb-2">Event Services</a>
+                        <div class="ml-4">
+                            <a href="#aura-booth" class="block text-gray-600">Aura Photo Booth</a>
+                        </div>
+                    </div>
+                    <a href="#shop" class="block text-xl text-gray-700 font-medium">Shop</a>
+                    <a href="#gift-cards" class="block text-xl text-gray-700 font-medium">Gift Cards</a>
+                    <a href="#contact" class="block text-xl text-gray-700 font-medium">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" id="home">
+        <div class="hero-rainbow-bg"></div>
+        
+        <div class="hero-content container mx-auto px-6 text-center text-white">
+            <h1 class="font-poppins text-5xl md:text-7xl font-bold mb-6 leading-tight" data-aos="fade-up">
+                Experience Your Aura
+                <span class="block rainbow-text">Like Never Before</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-gray-200" data-aos="fade-up" data-aos-delay="200">
+                Discover the vibrant energy that surrounds you through our cutting-edge aura photography and spiritual guidance services.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="400">
+                <button class="rainbow-gradient px-8 py-4 rounded-full text-white font-semibold text-lg hover:scale-105 transition-transform duration-300 shadow-lg">
+                    Book an Appointment
+                </button>
+                <button class="glass-effect px-8 py-4 rounded-full text-white font-semibold text-lg hover:scale-105 transition-transform duration-300">
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Grid -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-poppins text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Our <span class="rainbow-text">Services</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore your spiritual journey with our comprehensive range of aura and energy services
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Aura & Chakra Studio -->
+                <div class="rainbow-gradient-border" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white rounded-2xl p-8 h-full text-center">
+                        <div class="w-20 h-20 rainbow-gradient rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <h3 class="font-poppins text-2xl font-bold text-gray-800 mb-4">Aura & Chakra Studio</h3>
+                        <div class="mb-6">
+                            <p class="text-gray-700 font-medium mb-2">Aura Photographs,</p>
+                            <p class="text-gray-700 font-medium mb-2">Chakra Levels,</p>
+                            <p class="text-gray-700 font-medium mb-4">In-Depth Intuitive Readings</p>
+                        </div>
+                        <p class="text-gray-600 mb-6">By Appointment (Same Day Available) – Thursdays Through Mondays Weekly.</p>
+                        <p class="text-gray-600 mb-8">In-Studio Appointments where we provide you with the most unique and in-depth aura photo, aura reading and chakra reading packages in Los Angeles.</p>
+                        <button class="rainbow-gradient text-white px-8 py-3 rounded-full font-semibold text-lg hover:scale-105 transition-transform duration-300 shadow-lg">
+                            MAKE YOUR APPOINTMENT
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Aura Photo Booth -->
+                <div class="rainbow-gradient-border" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white rounded-2xl p-8 h-full text-center">
+                        <div class="w-20 h-20 rainbow-gradient rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <h3 class="font-poppins text-2xl font-bold text-gray-800 mb-4">Aura Photo Booth</h3>
+                        <div class="mb-6">
+                            <p class="text-gray-700 font-medium mb-4">Book Us For Your Events!</p>
+                            <p class="text-gray-700 font-medium mb-4">LA & Globally</p>
+                        </div>
+                        <p class="text-gray-600 mb-8">Book our Professional Aura Photo and Aura Reading Activation Experience for your next private event, corporate wellness retreat, trade show, conference and brand activation in Los Angeles, Anaheim, San Diego, Orange County, San Fransisco and Globally and truly connect with your guests!</p>
+                        <button class="rainbow-gradient text-white px-8 py-3 rounded-full font-semibold text-lg hover:scale-105 transition-transform duration-300 shadow-lg">
+                            GET EVENT QUOTE
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Gift Cards -->
+                <div class="rainbow-gradient-border" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white rounded-2xl p-8 h-full text-center">
+                        <div class="w-20 h-20 rainbow-gradient rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd" />
+                                <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z" />
+                            </svg>
+                        </div>
+                        <h3 class="font-poppins text-2xl font-bold text-gray-800 mb-4">Gift Cards</h3>
+                        <div class="mb-6">
+                            <p class="text-gray-700 font-medium mb-2">Empower Others In Your Life</p>
+                            <p class="text-gray-700 font-medium mb-2">With The Gift Of An Aura Photo</p>
+                            <p class="text-gray-700 font-medium mb-4">& Reading!</p>
+                            <p class="text-gray-700 font-medium mb-4">Click to Purchase</p>
+                        </div>
+                        <p class="text-gray-600 mb-6">Share the unique gift of Aura Photography, being seen, self-improvement and energy awareness to your friends and family through a Hollywood Aura Digital Gift Card.</p>
+                        <p class="text-gray-600 mb-8">Perfect as a Valentine&apos;s Day, Birthday, Anniversary & Christmas Present.</p>
+                        <button class="rainbow-gradient text-white px-8 py-3 rounded-full font-semibold text-lg hover:scale-105 transition-transform duration-300 shadow-lg">
+                            BUY A GIFT CARD
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="font-poppins text-4xl md:text-5xl font-bold text-gray-800 mb-8">
+                        About <span class="rainbow-text">Hollywood Aura</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        For over a decade, Hollywood Aura Photography has been at the forefront of spiritual photography and energy work. We combine cutting-edge technology with ancient wisdom to help you visualize and understand your unique energy signature.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Our experienced practitioners use specialized biofeedback equipment to capture the electromagnetic field around your body, translating your energy into stunning visual representations that reveal insights about your emotional, physical, and spiritual well-being.
+                    </p>
+                    <div class="flex items-center space-x-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold rainbow-text">10+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold rainbow-text">5000+</div>
+                            <div class="text-gray-600">Happy Clients</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold rainbow-text">100+</div>
+                            <div class="text-gray-600">Events</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative" data-aos="fade-left">
+                    <div class="rainbow-gradient-border">
+                        <div class="bg-white rounded-2xl p-2">
+                            <img src="https://hollywoodaura.com/wp-content/uploads/2024/03/Aura-Photography-Studio-Los-Angeles-Hollywood-Chakra1.webp" 
+                                 alt="Aura Photography Session" 
+                                 class="w-full h-96 object-cover rounded-xl">
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 rainbow-gradient rounded-full opacity-20 animate-pulse"></div>
+                    <div class="absolute -top-6 -right-6 w-16 h-16 rainbow-gradient rounded-full opacity-30 animate-pulse" style="animation-delay: 1s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-poppins text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    What Our Clients <span class="rainbow-text">Say</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover how our aura photography has transformed lives and provided spiritual insights
+                </p>
+            </div>
+            
+            <div class="swiper testimonials-swiper max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-3xl p-8 text-center aura-glow">
+                            <div class="w-20 h-20 rounded-full mx-auto mb-6 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                     alt="Sarah Johnson" class="w-full h-full object-cover">
+                            </div>
+                            <p class="text-lg text-gray-700 mb-6 italic">
+                                &quot;The aura photography session was absolutely transformative. Seeing my energy field helped me understand my emotional patterns and spiritual growth in ways I never imagined possible.&quot;
+                            </p>
+                            <h4 class="font-poppins font-semibold text-gray-800">Sarah Johnson</h4>
+                            <p class="text-gray-600">Wellness Coach</p>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-3xl p-8 text-center aura-glow">
+                            <div class="w-20 h-20 rounded-full mx-auto mb-6 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                     alt="Michael Chen" class="w-full h-full object-cover">
+                            </div>
+                            <p class="text-lg text-gray-700 mb-6 italic">
+                                &quot;I was skeptical at first, but the accuracy of the chakra reading was incredible. It identified energy blockages I didn&apos;t even know I had and provided practical guidance for healing.&quot;
+                            </p>
+                            <h4 class="font-poppins font-semibold text-gray-800">Michael Chen</h4>
+                            <p class="text-gray-600">Meditation Teacher</p>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-3xl p-8 text-center aura-glow">
+                            <div class="w-20 h-20 rounded-full mx-auto mb-6 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                     alt="Emma Rodriguez" class="w-full h-full object-cover">
+                            </div>
+                            <p class="text-lg text-gray-700 mb-6 italic">
+                                &quot;Having the aura booth at our wedding was magical! Our guests loved seeing their energy colors, and it added such a unique, spiritual element to our celebration.&quot;
+                            </p>
+                            <h4 class="font-poppins font-semibold text-gray-800">Emma Rodriguez</h4>
+                            <p class="text-gray-600">Event Planner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination mt-8"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call-to-Action Footer -->
+    <section class="py-20 rainbow-gradient">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-poppins text-4xl md:text-5xl font-bold text-white mb-6" data-aos="fade-up">
+                Ready to Discover Your Aura?
+            </h2>
+            <p class="text-xl text-white/90 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Book your session today and embark on a journey of self-discovery through the vibrant world of aura photography and energy healing.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="400">
+                <button class="bg-white text-purple-600 px-10 py-4 rounded-full font-semibold text-lg hover:scale-105 transition-transform duration-300 shadow-lg">
+                    Book Now
+                </button>
+                <button class="glass-effect px-10 py-4 rounded-full text-white font-semibold text-lg hover:scale-105 transition-transform duration-300">
+                    Call Us: (555) 123-AURA
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scripts -->
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        
+        // Initialize Swiper
+        const swiper = new Swiper('.testimonials-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 1,
+                },
+                1024: {
+                    slidesPerView: 1,
+                }
+            }
+        });
+        
+        // Smooth scrolling for Learn More button
+        document.addEventListener('DOMContentLoaded', function() {
+            const learnMoreBtn = document.querySelector('button:nth-child(2)');
+            if (learnMoreBtn) {
+                learnMoreBtn.addEventListener('click', function() {
+                    document.querySelector('section:nth-child(3)').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            
+            if (mobileMenuBtn && mobileMenu && mobileMenuClose) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.add('open');
+                });
+                
+                mobileMenuClose.addEventListener('click', function() {
+                    mobileMenu.classList.remove('open');
+                });
+                
+                // Close menu when clicking on a link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.remove('open');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
